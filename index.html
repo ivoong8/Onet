@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Onet Validates HGC20 Countdown</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            margin: 0;
+            background-color: #AEC6CF; /* Lighter blue background */
+        }
+
+        .logo {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            max-width: 200px; /* Adjust size as needed */
+        }
+
+        .countdown {
+            text-align: center;
+            background-color: #5F7285; /* Dark grey-blue timer background */
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            margin: 20px;
+        }
+
+        .countdown h1 {
+            margin: 10px 0;
+            font-size: 2em;
+        }
+
+        .timer {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .timer div {
+            margin: 0 15px;
+        }
+
+        .timer span {
+            font-size: 2em;
+            font-weight: bold;
+        }
+
+        /* Days only count style */
+        .countdown-days {
+            font-size: 1.5em;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Logo at the top -->
+    <img src="https://github.com/ivoong8/SuperNova/blob/main/HIEFO_no%20slogan.png?raw=true" class="logo"> 
+
+    <div class="countdown">
+        <h1>Onet validates compliant HGC20 with heater layer in...</h1>
+        <div class="countdown-days" id="days-only"></div>
+        <p>Time remaining: <span id="countdown"></span></p>
+        <div class="timer">
+            <div>
+                <span id="days"></span> Days
+            </div>
+            <div>
+                <span id="hours"></span> Hours
+            </div>
+            <div>
+                <span id="minutes"></span> Minutes
+            </div>
+            <div>
+                <span id="seconds"></span> Seconds
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Set the target date for April 4, 2025
+        const eventDate = new Date("April 4, 2025 00:00:00").getTime();
+
+        // Function to update countdown
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const timeLeft = eventDate - now;
+
+            const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+            // Display the countdown in days-only format
+            document.getElementById("days-only").textContent = `${days} Days`;
+
+            // Update the full countdown (days, hours, minutes, seconds)
+            document.getElementById("days").textContent = days;
+            document.getElementById("hours").textContent = hours;
+            document.getElementById("minutes").textContent = minutes;
+            document.getElementById("seconds").textContent = seconds;
+            document.getElementById("countdown").textContent = `${days} days, ${hours} hours, ${minutes} minutes, and ${seconds} seconds`;
+
+            if (timeLeft < 0) {
+                clearInterval(countdown);
+                document.getElementById("countdown").textContent = "The event has started!";
+                document.querySelector(".timer").style.display = "none";
+            }
+        }
+
+        // Update the countdown every second
+        const countdown = setInterval(updateCountdown, 1000);
+        updateCountdown();
+    </script>
+</body>
+</html>
