@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Onet Validates HGC20 Countdown</title>
+    <title>Onet Validation Countdown</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -13,7 +13,7 @@
             flex-direction: column;
             height: 100vh;
             margin: 0;
-            background-color: #AEC6CF; /* Lighter blue background */
+            background-color: #C8C3D6; /* Light purple-grey background */
         }
 
         .logo {
@@ -37,6 +37,12 @@
         .countdown h1 {
             margin: 10px 0;
             font-size: 2em;
+        }
+
+        .event-date {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 10px;
         }
 
         .timer {
@@ -67,7 +73,8 @@
     <img src="https://github.com/ivoong8/SuperNova/blob/main/HIEFO_no%20slogan.png?raw=true" class="logo"> 
 
     <div class="countdown">
-        <h1>Onet validates compliant HGC20 with heater layer in...</h1>
+        <h1>Onet validates compliant HGC20 with heater layer</h1>
+        <p class="event-date">Target Date: <strong>April 4, 2025</strong></p>
         <div class="countdown-days" id="days-only"></div>
         <p>Time remaining: <span id="countdown"></span></p>
         <div class="timer">
@@ -112,7 +119,7 @@
 
             if (timeLeft < 0) {
                 clearInterval(countdown);
-                document.getElementById("countdown").textContent = "The event has started!";
+                document.getElementById("countdown").textContent = "Validation complete!";
                 document.querySelector(".timer").style.display = "none";
             }
         }
